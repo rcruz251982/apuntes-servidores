@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes Servidores</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    
+</body>
+</html>
+
+
+<!-- BLOQUE 1: REDES E INTERNET -->
+<h2 class="section-title">🌐 1. Conceptos de Redes e IPs</h2>
+<div class="grid">
+    <div class="card">
+        <h3>🌍 Direcciones IP y Redes</h3>
+        <p>Formato: <code>NNN.NNN.NNN.NNN</code> (cada número de 0 a 255). Ej: <code>192.168.1.35</code> es válida; <code>192.340.1.35</code> es incorrecta[cite: 2].</p>
+        <ul>
+            <li><strong>WAN:</strong> Red amplia geográficamente[cite: 2].</li>
+            <li><strong>LAN:</strong> Red local (edificio, casa), comúnmente <code>192.168.1.X</code>[cite: 2].</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>🔍 Cómo averiguar tus IPs</h3>
+        <p><strong>IP Pública:</strong> Buscando en internet[cite: 2].</p>
+        <div class="terminal-block">
+            <span class="cmd">ipconfig</span>
+            <span class="desc">→ En la terminal de Windows (CMD) para ver tu IP privada y puerta de enlace (router)[cite: 2].</span>
+        </div>
+    </div>
+    <div class="card">
+        <h3>📂 Servidores DNS y Tipos de Servidores</h3>
+        <p><strong>DNS:</strong> Convierten dominios de texto en IPs numéricas (puedes consultarlo haciendo <code>ping dominio.com</code>)[cite: 2].</p>
+        <p><strong>Servicios comunes:</strong> Web (Apache), SSH (acceso remoto), FTP/SFTP (transferencia de ficheros), MySQL (BD), Samba (compartir carpetas), Correo (IMAP/SMTP)[cite: 2].</p>
+    </div>
+</div>
+
+<!-- BLOQUE 2: MÁQUINAS VIRTUALES Y VIRTUALBOX -->
+<h2 class="section-title">💻 2. Configuración de Máquinas Virtuales (VirtualBox)</h2>
+<div class="grid">
+    <div class="card">
+        <h3>⚙️ Requisitos de Creación</h3>
+        <ul>
+            <li><strong>Instalación previa:</strong> Descargar Microsoft Visual C++ 2019 y VirtualBox[cite: 2].</li>
+            <li><strong>Hardware base:</strong> Mínimo 2 GB de RAM y 1 procesador[cite: 2].</li>
+            <li><strong>¡Importante!:</strong> Marcar <em>Omitir instalación desatendida</em>[cite: 2].</li>
+            <li><strong>Disco Duro:</strong> 25 GB de tipo dinámico (crece según se use, formato VDI)[cite: 2].</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>🖧 Adaptador Puente (Crucial)</h3>
+        <p>Antes de arrancar la máquina virtual, debes ir a <strong>Configuración > Red</strong> y cambiar el conexionado a <strong>Adaptador Puente</strong>[cite: 2].</p>
+        <p><em>¿Por qué?</em> Para que tu servidor Ubuntu forme parte directa de tu red local y tenga su propia IP dentro de ella[cite: 2].</p>
+    </div>
+    <div class="card">
+        <h3>🐧 Instalación de Ubuntu Server</h3>
+        <ul>
+            <li>Seleccionar idioma español y distribución de teclado[cite: 2].</li>
+            <li>Desactivar el grupo LVM en el disco duro[cite: 2].</li>
+            <li>Omitir la actualización de Ubuntu Pro (es de pago)[cite: 2].</li>
+            <li><strong>¡Vital!:</strong> Marcar la casilla de <strong>Instalar servidor OpenSSH</strong> para poder controlarlo cómodamente desde Windows[cite: 2].</li>
+        </ul>
+    </div>
+</div>
+
+<!-- BLOQUE 3: CONTROL DEL SERVIDOR DESDE WINDOWS -->
+<h2 class="section-title">🔌 3. Conexión y Control del Servidor</h2>
+<div class="grid">
+    <div class="card">
+        <h3>🖥️ Comandos dentro de Ubuntu</h3>
+        <div class="terminal-block">
+            <span class="cmd">ip addr</span>
+            <span class="desc">→ Muestra la IP actual asignada al servidor[cite: 2].</span>
+            <span class="cmd">sudo shutdown now</span>
+            <span class="desc">→ Apaga el servidor de forma segura (pide contraseña)[cite: 2].</span>
+        </div>
+    </div>
+    <div class="card">
+        <h3>🪟 Conexión SSH desde Windows</h3>
+        <p>Abre el CMD de Windows y conéctate de forma remota escribiendo[cite: 2]:</p>
+        <div class="terminal-block">
+            <span class="cmd">ssh usuario@ip_servidor</span>
+            <span class="desc">→ Te pedirá la contraseña del servidor y entrarás directamente a la terminal Linux[cite: 2].</span>
+        </div>
+    </div>
+</div>
+
+<!-- BLOQUE 4: ESTRUCTURA LINUX Y RUTAS -->
+<h2 class="section-title">📂 4. Estructura de Directorios y Rutas en Linux</h2>
+<div class="grid">
+    <div class="card">
+        <h3>🗂️ El Árbol de Directorios (La Raíz <code>/</code>)</h3>
+        <ul>
+            <li><strong><code>/etc</code>:</strong> Archivos de configuración del sistema[cite: 2].</li>
+            <li><strong><code>/home</code>:</strong> Ubicación de los usuarios (la tilde <code>~</code> representa tu usuario)[cite: 2].</li>
+            <li><strong><code>/opt</code>:</strong> Software de terceros[cite: 2].</li>
+            <li><strong><code>/usr</code>:</strong> Programas propios del servidor[cite: 2].</li>
+            <li><strong><code>/srv</code>:</strong> Datos de servicios (web, ftp)[cite: 2].</li>
+            <li><strong><code>/var</code>:</strong> Datos variables (logs, webs)[cite: 2].</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h3>🧭 Tipos de Rutas</h3>
+        <ul>
+            <li><strong>Absolutas:</strong> Empiezan siempre desde la raíz <code>/</code> (ej: <code>cd /home/usuario/facturas</code>)[cite: 2].</li>
+            <li><strong>Relativas:</strong> Se mueven desde donde estás ubicado (ej: <code>cd facturas</code>)[cite: 2].</li>
+            <li><strong>Subir niveles:</strong> Usando <code>cd ..</code> o encadenados como <code>cd ../..</code>[cite: 2].</li>
+        </ul>
+        <div class="terminal-block">
+            <span class="cmd">pwd</span>
+            <span class="desc">→ Muestra la ruta exacta de dónde estás situado[cite: 2].</span>
+        </div>
+    </div>
+</div>
+
+<!-- BLOQUE 5: GESTIÓN DE ARCHIVOS Y CARPETAS -->
+<h2 class="section-title">💻 5. Comandos de Archivos, Carpetas y Comodines</h2>
+
+<div class="grid">
+    <div class="card">
+        <h3>👁️ Listar Archivos (ls)</h3>
+        <div class="terminal-block">
+            <span class="cmd">ls</span> <span class="desc">Listado normal[cite: 2]</span>
+            <span class="cmd">ls -l</span> <span class="desc">Listado detallado[cite: 2]</span>
+            <span class="cmd">ls -a</span> <span class="desc">Muestra archivos ocultos (con punto)[cite: 2]</span>
+            <span class="cmd">ls -t</span> <span class="desc">Ordena por fecha (recientes primero)[cite: 2]</span>
+        </div>
+        <p><strong>Comodines de búsqueda (*):</strong> <code>A*</code> (empieza por A), <code>*A</code> (acaba por A), <code>*A*</code> (contiene A)[cite: 2].</p>
+    </div>
+
+    <div class="card">
+        <h3>📝 Crear Archivos y Carpetas</h3>
+        <div class="terminal-block">
+            <span class="cmd">touch archivo.txt</span> <span class="desc">Crea archivo en blanco[cite: 2]</span>
+            <span class="cmd">mkdir carpeta</span> <span class="desc">Crea una carpeta[cite: 2]</span>
+            <span class="cmd">mkdir -p a/b/c</span> <span class="desc">Crea estructura anidada de golpe[cite: 2]</span>
+            <span class="cmd">nano archivo.txt</span> <span class="desc">Editor de texto (CTRL+S guardar, CTRL+X salir)[cite: 2]</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🗑️ Borrado de Archivos y Carpetas</h3>
+        <div class="terminal-block">
+            <span class="cmd">rm archivo.txt</span> <span class="desc">Borra un archivo[cite: 2]</span>
+            <span class="cmd">rm -i archivo.txt</span> <span class="desc">Borra pidiendo confirmación[cite: 2]</span>
+            <span class="cmd">rmdir carpeta</span> <span class="desc">Borra carpeta vacía[cite: 2]</span>
+            <span class="cmd">rm -rf carpeta</span> <span class="desc">Borra carpeta con todo sin previo aviso (¡Peligro!)[cite: 2]</span>
+        </div>
+    </div>
+</div>
+
+<div class="tip-box">
+    💡 <strong>Truco extra de árbol:</strong> Si quieres ver de forma gráfica toda la estructura de carpetas tipo esquema, puedes instalar la herramienta ejecutando <code>sudo apt install tree</code> y luego escribir <code>tree</code>[cite: 2].
+</div>
