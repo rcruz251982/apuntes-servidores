@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Prácticos - Manual de Servidores</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <h1>⚡ Ejemplos Prácticos de Terminal y Linux</h1>
+            <p class="subtitle">Casos reales y ejercicios aplicados paso a paso en clase.</p>
+            <div class="nav-links">
+                <a href="index.html">📖 Apuntes Visuales</a>
+                <a href="ejemplos.html" class="active">⚡ Ejemplos Prácticos</a>
+            </div>
+        </header>
+
+        <!-- BLOQUE 1: REDES Y DIAGNÓSTICO -->
+        <h2 class="section-title">🌐 1. Redes y Diagnóstico (Windows & Linux)</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🖥️ Comprobación de IP en Windows (CMD)</h3>
+                <p>Comando fundamental para conocer la dirección IP privada de tu ordenador y la puerta de enlace (router)[cite: 5].</p>
+                <div class="terminal-block cmd-win">
+                    <span class="cmd">ipconfig</span>
+                </div>
+                <p>Muestra la configuración de red actual del equipo Windows[cite: 5].</p>
+            </div>
+            
+            <div class="card">
+                <h3>🔍 Consulta de Dominios (Ping)</h3>
+                <p>Verifica la conectividad y traduce un nombre de dominio de texto a su dirección IP numérica correspondiente[cite: 5].</p>
+                <div class="terminal-block cmd-win">
+                    <span class="cmd">ping google.com</span>
+                </div>
+                <p>Devuelve la IP (ej: <code>64.233.167.101</code>) y mide la latencia de respuesta[cite: 5].</p>
+            </div>
+            
+            <div class="card">
+                <h3>🐧 Identificación de Red en el Servidor</h3>
+                <p>Comando ejecutado dentro de Ubuntu Server para conocer la dirección IP que le ha asignado dinámicamente el router[cite: 5].</p>
+                <div class="terminal-block">
+                    <span class="cmd">ip addr</span>
+                </div>
+                <p>Muestra las interfaces de red y la IP privada del servidor virtual[cite: 5].</p>
+            </div>
+        </div>
+
+        <!-- BLOQUE 2: NAVEGACIÓN Y RUTAS -->
+        <h2 class="section-title">🧭 2. Navegación y Estructura de Directorios</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📂 Movimiento entre Directorios</h3>
+                <p>Ejemplos de desplazamiento utilizando rutas absolutas, relativas y atajos del sistema[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cd /</span>
+                </div>
+                <p>Ir directamente a la raíz del sistema[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cd ~</span>
+                </div>
+                <p>Ir a la carpeta personal del usuario activo[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cd ../..</span>
+                </div>
+                <p>Subir dos niveles hacia arriba en el árbol de carpetas de golpe[cite: 5].</p>
+            </div>
+            
+            <div class="card">
+                <h3>📍 Ubicación y Esquemas</h3>
+                <p>Comprobar dónde estás situado y visualizar gráficamente la jerarquía de archivos y carpetas[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">pwd</span>
+                </div>
+                <p>Muestra la ruta absoluta exacta de dónde estás situado (ej: <code>/home/usuario</code>)[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">tree</span>
+                </div>
+                <p>Genera un esquema visual en árbol de todo el contenido actual[cite: 5].</p>
+            </div>
+        </div>
+
+        <!-- BLOQUE 3: CREACIÓN Y GESTIÓN DE ARCHIVOS Y CARPETAS -->
+        <h2 class="section-title">📁 3. Creación de Estructuras y Archivos de Configuración</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🏗️ Estructuras Anidadas (mkdir)</h3>
+                <p>Creación simultánea de múltiples carpetas o árboles completos de directorios de golpe con la opción <code>-p</code>[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">mkdir origen destino</span>
+                </div>
+                <p>Crea ambas carpetas principales en paralelo[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">mkdir -p origen/config origen/app</span>
+                </div>
+                <p>Crea subcarpetas internas de una sola vez[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">mkdir -p facturas/2026/septiembre</span>
+                </div>
+                <p>Crea una ruta compleja anidada completa[cite: 5].</p>
+            </div>
+
+            <div class="card">
+                <h3>📝 Escritura Rápida sin Editor (cat + EOF)</h3>
+                <p>Crear archivos de texto o configuración directamente introduciendo líneas de contenido desde la terminal[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cat &lt;&lt;EOF &gt; origen/config/pantalla.conf<br>resolucion: 1980x1024;<br>color: 32bits;<br>tactil: true<br>EOF</span>
+                </div>
+                <p>Escribe texto línea a línea y lo guarda en el archivo (sobrescribiendo si ya existía)[cite: 5].</p>
+            </div>
+
+            <div class="card">
+                <h3>🔎 Búsqueda Avanzada (Find y Grep)</h3>
+                <p>Localizar archivos específicos en subcarpetas o buscar texto concreto dentro de los ficheros[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">find -name audio.conf</span>
+                </div>
+                <p>Busca ficheros por nombre de manera recursiva en todo el árbol[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">grep -R 'archivo'</span>
+                </div>
+                <p>Busca una palabra o texto determinado dentro de los archivos de forma recursiva[cite: 5].</p>
+            </div>
+        </div>
+
+        <!-- BLOQUE 4: COPIA, MOVIMIENTO Y GESTIÓN AVANZADA -->
+        <h2 class="section-title">🔄 4. Copia, Movimiento y Operaciones Complejas</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>📋 Ejemplos de Copia (cp)</h3>
+                <p>Uso de opciones avanzadas para duplicar archivos y carpetas enteras con seguimiento visual[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cp -v origen/config/pantalla.conf destino</span>
+                </div>
+                <p>Copia un archivo mostrando el progreso detallado en pantalla[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cp -rv origen/app destino</span>
+                </div>
+                <p>Copia una carpeta entera de forma recursiva con modo detallado (verbose)[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cp -vr destino/configuracion/. origen/config</span>
+                </div>
+                <p>Copia únicamente el contenido interno de un directorio usando <code>/.</code> sin arrastrar la carpeta contenedora[cite: 5].</p>
+            </div>
+
+            <div class="card">
+                <h3>🚚 Ejemplos de Movimiento y Renombrado (mv)</h3>
+                <p>Reubicar elementos, renombrarlos o aplicar operaciones múltiples mediante llaves <code>{}</code>[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">mv -v origen/config/audio.conf destino</span>
+                </div>
+                <p>Mueve el archivo de configuración a la nueva ruta designada[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">mv -v {destino/audio.conf,destino/pantalla.conf} destino/configuracion</span>
+                </div>
+                <p>Mueve varios archivos agrupados entre llaves de manera simultánea[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">cp -v remot.app remot.bak</span>
+                </div>
+                <p>Crea una copia de seguridad rápida cambiando la extensión a formato <code>.bak</code>[cite: 5].</p>
+            </div>
+
+            <div class="card">
+                <h3>🗑️ Ejemplos de Borrado y Limpieza (rm)</h3>
+                <p>Eliminación segura de ficheros sueltos o purgado de directorios con diferentes niveles de precaución[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">rm -i archivo.txt</span>
+                </div>
+                <p>Borra pidiendo confirmación interactiva previa (sí/no)[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">rmdir albaranes</span>
+                </div>
+                <p>Borra exclusivamente carpetas que se encuentren totalmente vacías[cite: 5].</p>
+                
+                <div class="terminal-block">
+                    <span class="cmd">rm -rf carpeta</span>
+                </div>
+                <p>Fuerza la eliminación recursiva de una carpeta con todo su contenido sin previo aviso (¡Peligro!)[cite: 5].</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            💡 <strong>Consejo práctico:</strong> Recuerda que puedes utilizar la tecla **Tabulador** en la terminal para autocompletar nombres de archivos y carpetas largos automáticamente, evitando errores de escritura[cite: 5].
+        </div>
+
+    </div>
+</body>
+</html>

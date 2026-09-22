@@ -12,6 +12,10 @@
         <header>
             <h1>📚 Manual Definitivo: Servidores, Redes y Linux</h1>
             <p class="subtitle">Apuntes visuales y prácticos para el curso.</p>
+            <div class="nav-links">
+                <a href="index.html" class="active">📖 Apuntes Visuales</a>
+                <a href="ejemplos.html">⚡ Ejemplos Prácticos</a>
+            </div>
         </header>
 
         <!-- BLOQUE 1: REDES E INTERNET -->
@@ -22,12 +26,13 @@
                 <p>Formato: <code>NNN.NNN.NNN.NNN</code> (cada número de 0 a 255). Ej: <code>192.168.1.35</code> es válida; <code>192.340.1.35</code> es incorrecta.</p>
                 <ul>
                     <li><strong>WAN:</strong> Red amplia geográficamente.</li>
-                    <li><strong>LAN:</strong> Red local (edificio, casa), comúnmente <code>192.168.1.X</code>.</li>
+                    <li><strong>LAN:</strong> Red local (edificio, casa), comúnmente <code>192.168.1.X</code> o <code>10.0.1.X</code>.</li>
+                    <li><strong>Router / Puerta de enlace:</strong> Dispositivo que interconecta la LAN con la WAN (ej: <code>10.0.0.1</code>).</li>
                 </ul>
             </div>
             <div class="card">
                 <h3>🔍 Cómo averiguar tus IPs</h3>
-                <p><strong>IP Pública:</strong> Buscando en internet.</p>
+                <p><strong>IP Pública:</strong> Buscando en internet (ej: <code>83.48.1.214</code>).</p>
                 <div class="terminal-block">
                     <span class="cmd">ipconfig</span>
                     <span class="desc">→ En la terminal de Windows (CMD) para ver tu IP privada y puerta de enlace (router).</span>
@@ -35,7 +40,7 @@
             </div>
             <div class="card">
                 <h3>📂 Servidores DNS y Tipos de Servidores</h3>
-                <p><strong>DNS:</strong> Convierten dominios de texto en IPs numéricas (puedes consultarlo haciendo <code>ping dominio.com</code>).</p>
+                <p><strong>DNS:</strong> Convierten dominios de texto en IPs numéricas. Puedes consultarlo haciendo <code>ping dominio.com</code> para que devuelva su IP (ej: <code>64.233.167.101</code>).</p>
                 <p><strong>Servicios comunes:</strong> Web (Apache), SSH (acceso remoto), FTP/SFTP (transferencia de ficheros), MySQL (BD), Samba (compartir carpetas), Correo (IMAP/SMTP).</p>
             </div>
         </div>
@@ -82,7 +87,7 @@
             </div>
             <div class="card">
                 <h3>🪟 Conexión SSH desde Windows</h3>
-                <p>Abre el CMD de Windows y conéctate de forma remota escribiendo:</p>
+                <p>Abre el CMD de Windows (símbolo del sistema) y conéctate de forma remota escribiendo:</p>
                 <div class="terminal-block">
                     <span class="cmd">ssh usuario@ip_servidor</span>
                     <span class="desc">→ Te pedirá la contraseña del servidor y entrarás directamente a la terminal Linux.</span>
@@ -107,8 +112,8 @@
             <div class="card">
                 <h3>🧭 Tipos de Rutas</h3>
                 <ul>
-                    <li><strong>Absolutas:</strong> Empiezan siempre desde la raíz <code>/</code> (ej: <code>cd /home/usuario/facturas</code>).</li>
-                    <li><strong>Relativas:</strong> Se mueven desde donde estás ubicado (ej: <code>cd facturas</code>).</li>
+                    <li><strong>Absolutas:</strong> Empiezan siempre desde la raíz <code>/</code> (ej: <code>cd /home/usuario/facturas</code> o <code>cd /etc</code>).</li>
+                    <li><strong>Relativas:</strong> Se mueven desde donde estás ubicado (ej: <code>cd facturas</code> o <code>cd ../../etc</code>).</li>
                     <li><strong>Subir niveles:</strong> Usando <code>cd ..</code> o encadenados como <code>cd ../..</code>.</li>
                 </ul>
                 <div class="terminal-block">
@@ -119,43 +124,103 @@
         </div>
 
         <!-- BLOQUE 5: GESTIÓN DE ARCHIVOS Y CARPETAS -->
-        <h2 class="section-title">💻 5. Comandos de Archivos, Carpetas y Comodines</h2>
+        <h2 class="section-title">💻 5. Comandos de Archivos, Carpetas y Operaciones Avanzadas</h2>
         
         <div class="grid">
             <div class="card">
-                <h3>👁️ Listar Archivos (ls)</h3>
+                <h3>👁️ Listar Archivos (ls) y Búsquedas</h3>
                 <div class="terminal-block">
                     <span class="cmd">ls</span> <span class="desc">Listado normal</span>
                     <span class="cmd">ls -l</span> <span class="desc">Listado detallado</span>
                     <span class="cmd">ls -a</span> <span class="desc">Muestra archivos ocultos (con punto)</span>
                     <span class="cmd">ls -t</span> <span class="desc">Ordena por fecha (recientes primero)</span>
+                    <span class="cmd">ls -R</span> <span class="desc">Listado recursivo (incluyendo subcarpetas)</span>
                 </div>
-                <p><strong>Comodines de búsqueda (*):</strong> <code>A*</code> (empieza por A), <code>*A</code> (acaba por A), <code>*A*</code> (contiene A).</p>
+                <p><strong>Comodines (*):</strong> <code>A*</code> (empieza por A), <code>*A</code> (acaba por A), <code>*A*</code> (contiene A).</p>
+                <div class="terminal-block">
+                    <span class="cmd">find -name audio.conf</span> <span class="desc">Busca ficheros en subcarpetas.</span>
+                    <span class="cmd">grep -R 'texto'</span> <span class="desc">Busca texto dentro de archivos recursivamente.</span>
+                </div>
             </div>
 
             <div class="card">
-                <h3>📝 Crear Archivos y Carpetas</h3>
+                <h3>📝 Crear Archivos y Contenido</h3>
                 <div class="terminal-block">
                     <span class="cmd">touch archivo.txt</span> <span class="desc">Crea archivo en blanco</span>
-                    <span class="cmd">mkdir carpeta</span> <span class="desc">Crea una carpeta</span>
-                    <span class="cmd">mkdir -p a/b/c</span> <span class="desc">Crea estructura anidada de golpe</span>
-                    <span class="cmd">nano archivo.txt</span> <span class="desc">Editor de texto (CTRL+S guardar, CTRL+X salir)</span>
+                    <span class="cmd">nano archivo.txt</span> <span class="desc">Editor de texto (CTRL+S guardar, CTRL+X salir, CTRL+F buscar)</span>
+                    <span class="cmd">cat archivo.txt</span> <span class="desc">Visualiza contenido rápidamente</span>
+                </div>
+                <p><strong>Crear o reescribir con <code>cat</code> y <code>EOF</code>:</strong></p>
+                <div class="terminal-block">
+                    <span class="cmd">cat &lt;&lt;EOF &gt; archivo.txt</span>
+                    <span class="desc">Texto de cero (sobrescribe si existe). Línea a línea.</span>
+                    <span class="cmd">EOF</span>
+                </div>
+                <p><strong>Redirecciones:</strong></p>
+                <div class="terminal-block">
+                    <span class="cmd">&gt;</span> <span class="desc">Machaca/sobrescribe el contenido del archivo.</span>
+                    <span class="cmd">&gt;&gt;</span> <span class="desc">Añade contenido al final del archivo sin borrar lo anterior.</span>
                 </div>
             </div>
 
             <div class="card">
-                <h3>🗑️ Borrado de Archivos y Carpetas</h3>
+                <h3>📁 Crear Carpetas</h3>
+                <div class="terminal-block">
+                    <span class="cmd">mkdir carpeta</span> <span class="desc">Crea una carpeta</span>
+                    <span class="cmd">mkdir c1 c2</span> <span class="desc">Crea varias carpetas a la vez</span>
+                    <span class="cmd">mkdir -p a/b/c</span> <span class="desc">Crea estructura anidada de golpe</span>
+                </div>
+                <p><strong>Herramienta Tree:</strong></p>
+                <div class="terminal-block">
+                    <span class="cmd">tree</span> <span class="desc">Muestra esquema gráfico de carpetas. Si no está: <code style="color:#f43f5e">sudo apt install tree</code></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>📋 Copiar Archivos y Carpetas (cp)</h3>
+                <div class="terminal-block">
+                    <span class="cmd">cp origen.txt destino.txt</span> <span class="desc">Copia y renombra</span>
+                    <span class="cmd">cp origen.txt /etc</span> <span class="desc">Copia a otra ruta</span>
+                    <span class="cmd">cp -i</span> <span class="desc">Pregunta antes de sobrescribir</span>
+                    <span class="cmd">cp -u</span> <span class="desc">Copia sólo si es más reciente</span>
+                    <span class="cmd">cp -v</span> <span class="desc">Muestra progreso</span>
+                    <span class="cmd">cp -r</span> <span class="desc">Copia recursiva (carpetas enteras)</span>
+                    <span class="cmd">cp -a</span> <span class="desc">Copia total conservando permisos, fechas y propietario</span>
+                </div>
+                <p><em>Truco copia de contenido limpio:</em> <code>cp -r origen/. destino</code> copia solo el contenido interno sin arrastrar la carpeta contenedora.</p>
+            </div>
+
+            <div class="card">
+                <h3>🚚 Mover y Renombrar (mv)</h3>
+                <div class="terminal-block">
+                    <span class="cmd">mv origen.txt backup.bak</span> <span class="desc">Renombra un archivo</span>
+                    <span class="cmd">mv -i</span> <span class="desc">Pregunta antes de sobrescribir</span>
+                    <span class="cmd">mv -v</span> <span class="desc">Muestra el proceso ejecutado</span>
+                    <span class="cmd">mv -uv a* backup/</span> <span class="desc">Mueve recursivamente solo los ficheros actuales que empiezan por a</span>
+                </div>
+                <p><em>Truco múltiples archivos con llaves:</em></p>
+                <div class="terminal-block">
+                    <span class="cmd">mv -v {d1/a.conf,d1/b.conf} d2/config/</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🗑️ Borrado de Archivos y Carpetas (rm)</h3>
                 <div class="terminal-block">
                     <span class="cmd">rm archivo.txt</span> <span class="desc">Borra un archivo</span>
                     <span class="cmd">rm -i archivo.txt</span> <span class="desc">Borra pidiendo confirmación</span>
                     <span class="cmd">rmdir carpeta</span> <span class="desc">Borra carpeta vacía</span>
-                    <span class="cmd">rm -rf carpeta</span> <span class="desc">Borra carpeta con todo sin previo aviso (¡Peligro!)</span>
+                    <span class="cmd">rm -r carpeta</span> <span class="desc">Borra carpeta con todo (sin aviso previo, ¡Cuidado!)</span>
+                    <span class="cmd">rm -rf carpeta</span> <span class="desc">Fuerza eliminación sin preguntar (sólo atrevidos)</span>
+                    <span class="cmd">rm -rfi carpeta</span> <span class="desc">Fuerza la eliminación preguntando paso a paso</span>
                 </div>
             </div>
         </div>
 
         <div class="tip-box">
-            💡 <strong>Truco extra de árbol:</strong> Si quieres ver de forma gráfica toda la estructura de carpetas tipo esquema, puedes instalar la herramienta ejecutando <code>sudo apt install tree</code> y luego escribir <code>tree</code>.
+            💡 <strong>Nota técnica previa:</strong> Recuerda que <strong>SUDO</strong> significa <em>Super User Do</em> / <em>Substitute User Do</em> y <strong>APT</strong> proviene de <em>Advanced Package Tool</em>. ¡Todo listo y condensado a mano para tus prácticas!
         </div>
 
     </div>
